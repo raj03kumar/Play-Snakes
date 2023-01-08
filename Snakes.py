@@ -19,14 +19,14 @@ screen_height = 600
 gameWindow = pygame.display.set_mode((screen_width, screen_height))
 
 # background image
-bgimg=pygame.image.load("snake.jpg")
+bgimg=pygame.image.load("game_files/img/snake.jpg")
 bgimg=pygame.transform.scale(bgimg, (screen_width, screen_height)).convert_alpha()
 
-start_img=pygame.image.load("start.jpg")
+start_img=pygame.image.load("game_files/img/start.jpg")
 start_img=pygame.transform.scale(start_img, (screen_width, screen_height)).convert_alpha()
 
 # Game Title
-pygame.display.set_caption("Snakes")
+pygame.display.set_caption("Play-Snakes")
 pygame.display.update()
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 55)
@@ -54,7 +54,7 @@ def welcome():
                 exit_game=True
             if event.type==pygame.KEYDOWN:
                 if event.key==pygame.K_SPACE:
-                    pygame.mixer.music.load('back.wav')
+                    pygame.mixer.music.load('game_files/sounds/back.wav')
                     pygame.mixer.music.play(-1)   #to play background music -1 to play music infinitly
                     gameloop()
 
@@ -80,16 +80,16 @@ def gameloop():
     snk_length = 1
 
     # check if highscore file exist:
-    if(not os.path.exists("highscore.txt")):
-        with open("highscore.txt", "w")as f:
+    if(not os.path.exists("game_files/highscore.txt")):
+        with open("game_files/highscore.txt", "w")as f:
             f.write("0") 
 
-    with open("highscore.txt","r") as f:
+    with open("game_files/highscore.txt","r") as f:
         highscore=f.read()
 
     while not exit_game:
         if game_over:
-            with open("highscore.txt", "w")as f:
+            with open("game_files/highscore.txt", "w")as f:
                 f.write(str(highscore))
 
             gameWindow.fill(black)
@@ -156,13 +156,13 @@ def gameloop():
             # to check if snake doesn't crosses the window
             if snake_x<0 or snake_x>screen_width or snake_y<0 or snake_y>screen_height:
                 game_over=True
-                pygame.mixer.music.load('gameover.wav')
+                pygame.mixer.music.load('game_files/sounds/gameover.wav')
                 pygame.mixer.music.play()   #to play background music
 
             # to check if snake doesn't collide with itself we check that the coordinate of head is not equal to any of the snake part
             if head in snk_list[:-1]:   #snk_list[:-1]means all the elements excluding the last element
                 game_over=True
-                pygame.mixer.music.load('gameover.wav')
+                pygame.mixer.music.load('game_files/sounds/gameover.wav')
                 pygame.mixer.music.play()   #to play background music
 
             # pygame.draw.rect(gameWindow, black, [snake_x, snake_y, snake_size, snake_size])
