@@ -3,7 +3,7 @@ import pygame
 import random
 import os
 
-#below line is for initialising mixer which helps us to put music into our game
+#Below line is for initialising mixer which helps us to put music into our game
 pygame.mixer.init()
 
 # below line initialised all the packages of pygame
@@ -25,7 +25,7 @@ gameWindow = pygame.display.set_mode((screen_width, screen_height))
 bgimg=pygame.image.load("game_files/img/snake.jpg")
 #we have to scale our image so that it fits perfectly into the screen
 bgimg=pygame.transform.scale(bgimg, (screen_width, screen_height)).convert_alpha()  
-    #the start image
+#the start image
 start_img=pygame.image.load("game_files/img/start.jpg")
 start_img=pygame.transform.scale(start_img, (screen_width, screen_height)).convert_alpha()
 
